@@ -1,32 +1,100 @@
 <template>
-  <div>{{msg}}</div>
+  <div class="container">
+    <el-table
+      :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      style="width: 100%"
+    >
+      <el-table-column label="Date" prop="date"></el-table-column>
+      <el-table-column label="Name" prop="name"></el-table-column>
+      <el-table-column align="right">
+        <template slot="header" slot-scope="scope">
+          <el-input v-model="search" size="mini" placeholder="Type to search" />
+        </template>
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  name: "Ping",
   data() {
     return {
-      msg: ""
+      tableData: [
+        {
+          date: "2016-05-03",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles"
+        },
+        {
+          date: "2016-05-02",
+          name: "John",
+          address: "No. 189, Grove St, Los Angeles"
+        },
+        {
+          date: "2016-05-04",
+          name: "Morgan",
+          address: "No. 189, Grove St, Los Angeles"
+        },
+        {
+          date: "2016-05-01",
+          name: "Jessy",
+          address: "No. 189, Grove St, Los Angeles"
+        }
+      ],
+      search: ""
     };
   },
   methods: {
-    async getMessage() {
-      try {
-        const path = "http://127.0.0.1:5000/ping";
-        const res = await axios.get(path);
-        this.msg = res.data;
-      } catch (err) {
-        throw new Error(err);
-      }
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    handleDelete(index, row) {
+      console.log(index, row);
     }
-  },
-  created() {
-    this.getMessage();
   }
 };
 </script>
 
+
+// import axios from "axios";
+// export default {
+//   name: "Ping",
+//   data() {
+//     return {
+//       msg: ""
+//     };
+//   },
+//   methods: {
+//     async getMessage() {
+//       try {
+//         const path = "http://127.0.0.1:5000/ping";
+//         const res = await axios.get(path);
+//         this.msg = res.data;
+//       } catch (err) {
+//         throw new Error(err);
+//       }
+//     },
+//     open1() {
+//       this.$notify({
+//         title: "Success",
+//         message: "This is a success message",
+//         type: "success"
+//       });
+//     }
+//   },
+//   created() {
+//     this.getMessage();
+//   }
+// };
+
+
 <style scoped>
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
 </style>
