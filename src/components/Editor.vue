@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="add-note-container">
     <form>
       <div class="title-author-container">
-        <input placeholder="Enter title" class="title" type="text" />
-        <input placeholder="Enter author" class="author" type="text" />
+        <el-input placeholder="Enter title" v-model="title" clearable></el-input>
+        <el-input placeholder="Enter author" v-model="author" clearable></el-input>
       </div>
+      <el-rate v-model="rating"></el-rate>
       <vue-editor v-model="content"></vue-editor>
       <el-button type="primary" @click="handleClick">Save</el-button>
     </form>
@@ -17,7 +18,10 @@ import { VueEditor } from "vue2-editor";
 export default {
   data() {
     return {
-      content: ""
+      content: "",
+      title: "",
+      author: "",
+      rating: null
     };
   },
   components: {
@@ -32,24 +36,24 @@ export default {
 </script>
 
 <style scoped>
+.el-rate {
+  font-size: 20px;
+}
+.el-input {
+  font-size: 24px;
+  margin-bottom: 2rem;
+}
 .title-author-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
 }
-
-.title,
-.author {
-  height: 5rem;
-  font-size: 1.5rem;
-  width: 50%;
-  border: none;
-  outline: none;
+.add-note-container {
+  width: 80%;
+  margin: 0 auto;
 }
-
-input:focus {
-  border: none;
-  border-color: transparent;
-  border-bottom: 2px solid red;
+.el-button {
+  margin-top: 10px;
+  float: right;
 }
 </style>
