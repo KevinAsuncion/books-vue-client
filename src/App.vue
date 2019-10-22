@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    {{msg}}
+    <NavBar />
     <router-view />
   </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBar";
 export default {
-  data() {
-    return {
-      msg: "Hello from the app page"
-    };
+  components: {
+    NavBar
   }
 };
 </script>
