@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <el-table
-      :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      :data="tableData.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
     >
-      <el-table-column label="Title" prop="title"></el-table-column>
-      <el-table-column label="Author" prop="author"></el-table-column>
+      <el-table-column label="Title" prop="title" sortable></el-table-column>
+      <el-table-column label="Author" prop="author" sortable></el-table-column>
+      <el-table-column label="Rating" prop="rating" sortable></el-table-column>
       <el-table-column align="right">
         <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="mini" placeholder="Type to search" />
+          <el-input v-model="search" size="edium" placeholder="Type to search" />
         </template>
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -26,24 +26,29 @@ export default {
     return {
       tableData: [
         {
-          date: "2016-05-03",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles"
+          title: "The Model Thinker",
+          author: "JK Rowling",
+          rating: 2
         },
         {
-          date: "2016-05-02",
-          name: "John",
-          address: "No. 189, Grove St, Los Angeles"
+          title: "Harry Potter",
+          author: "JK Rowling",
+          rating: 3
         },
         {
-          date: "2016-05-04",
-          name: "Morgan",
-          address: "No. 189, Grove St, Los Angeles"
+          title: "To Kill a Mockingbird",
+          author: "JK Rowling",
+          rating: 4
         },
         {
-          date: "2016-05-01",
-          name: "Jessy",
-          address: "No. 189, Grove St, Los Angeles"
+          title: "Sapiens",
+          author: "JK Rowling",
+          rating: 5
+        },
+        {
+          title: "The Model Thinker",
+          author: "JK Rowling",
+          rating: 6
         }
       ],
       search: ""
@@ -97,5 +102,9 @@ export default {
 .container {
   width: 90%;
   margin: 0 auto;
+}
+
+.searchbar {
+  width: 75%;
 }
 </style>
