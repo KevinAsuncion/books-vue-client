@@ -6,7 +6,7 @@
         <router-link to="/booknotes">All Notes</router-link>
       </el-menu-item>
       <el-menu-item index="2">
-        <router-link to="/newbooknote">Add Notes</router-link>
+        <router-link to="/booknotes/new">Add Notes</router-link>
       </el-menu-item>
       <el-menu-item index="3">Logout</el-menu-item>
     </el-menu>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import BookNotes from '../components/BookNotes';
 import Editor from '../components/Editor';
+import BookNoteDetail from '../components/BookNoteDetail';
 
 Vue.use(VueRouter);
 
@@ -17,10 +18,16 @@ const routes = [
     component: Editor,
   },
   {
-    path: '/newbooknote',
+    path: '/booknotes/new',
     name: 'New Book Note',
     component: Editor,
   },
+  {
+    path: '/booknotes/detail',
+    name: 'Book Note Detail',
+    component: BookNoteDetail,
+  },
+
 ];
 
 const router = new VueRouter({
