@@ -17,9 +17,23 @@
           <el-input v-model="search" size="medium" placeholder="Type to search" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleView(scope.$index, scope.row)">View</el-button>
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          <el-button-group>
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              @click="handleEdit(scope.$index, scope.row)"
+            ></el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-view"
+              @click="handleView(scope.$index, scope.row)"
+            ></el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-delete"
+              @click="handleDelete(scope.$index, scope.row)"
+            ></el-button>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
