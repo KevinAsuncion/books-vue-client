@@ -5,9 +5,13 @@
       style="width: 100%"
       stripe
     >
-      <el-table-column label="Title" prop="title"></el-table-column>
-      <el-table-column label="Author" prop="author"></el-table-column>
-      <el-table-column label="Rating" prop="rating"></el-table-column>
+      <el-table-column label="Title" prop="title" sortable></el-table-column>
+      <el-table-column label="Author" prop="author" sortable></el-table-column>
+      <el-table-column label="Rating" prop="rating" sortable>
+        <template slot-scope="scope">
+          <el-rate disabled v-model="scope.row.rating"></el-rate>
+        </template>
+      </el-table-column>
       <el-table-column align="right">
         <template slot="header" slot-scope="scope">
           <el-input v-model="search" size="medium" placeholder="Type to search" />
@@ -31,7 +35,7 @@ export default {
         {
           title: "The Model Thinker",
           author: "JK Rowling",
-          rating: 2,
+          rating: 1,
           id: "hello"
         },
         {
@@ -59,8 +63,7 @@ export default {
           id: "yo"
         }
       ],
-      search: "",
-      rating: ""
+      search: ""
     };
   },
   methods: {
@@ -73,9 +76,6 @@ export default {
     handleView(index, row) {
       this.$router.push("/booknotes/detail");
       console.log(index, row.id);
-    },
-    handleRateChange() {
-      console.log(this.rating);
     }
   }
 };
