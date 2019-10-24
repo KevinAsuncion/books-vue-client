@@ -1,7 +1,6 @@
 <template>
   <div class="table-container">
     <el-table
-      v-if="tableData"
       :data="tableData.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || data.author.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
       stripe
@@ -38,45 +37,22 @@
           </el-button-group>
         </template>
       </el-table-column>
+      <template slot="empty" slot-scope="scope">
+        <router-link to="/booknotes/new">
+          <el-button>Add new Booknotes</el-button>
+        </router-link>
+      </template>
     </el-table>
-    <div v-else>
-      Looks like you have no notes, let's add some
-      <el-button>Add A Book Note</el-button>
-    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+  name: "BookNotes",
   data() {
     return {
-      tableData: [
-        {
-          title: "The Model Thinker",
-          author: "JK Rowling",
-          rating: 1,
-          id: "hello"
-        },
-        {
-          title: "Harry Potter",
-          author: "Another guy",
-          rating: 3,
-          id: "world"
-        },
-        {
-          title: "To Kill a Mockingbird",
-          author: "Girl",
-          rating: 4,
-          id: "again"
-        },
-        {
-          title: "Sapiens",
-          author: "Person",
-          rating: 5,
-          id: "here"
-        }
-      ],
+      tableData: [],
       search: ""
     };
   },
@@ -93,42 +69,23 @@ export default {
     },
     handleClick(column, row, event) {
       this.$router.push("/booknotes/detail");
+    },
+    async getBookNotes() {
+      try {
+        const path = "http://127.0.0.1:5000/booknotes";
+        const res = await axios.get(path);
+        console.log(res);
+        this.tableData = res.data.book_notes;
+      } catch (err) {
+        throw new Error(err);
+      }
     }
+  },
+  created() {
+    this.getBookNotes();
   }
 };
 </script>
-
-
-
-// export default {
-//   name: "Ping",
-//   data() {
-//     return {
-//       msg: ""
-//     };
-//   },
-//   methods: {
-//     async getMessage() {
-//       try {
-//         const path = "http://127.0.0.1:5000/ping";
-//         const res = await axios.get(path);
-//         this.msg = res.data;
-//       } catch (err) {
-//         throw new Error(err);
-//       }
-//     },
-//     open1() {
-//       this.$notify({
-//         title: "Success",
-//         message: "This is a success message",
-//         type: "success"
-//       });
-//     }
-//   },
-//   created() {
-//     this.getMessage();
-//   }
-// };
 
 
 <style scoped>
