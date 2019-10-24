@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="table-container">
     <el-table
       :data="tableData.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || data.author.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
@@ -59,7 +59,7 @@ export default {
         {
           title: "The Model Thinker",
           author: "Dude",
-          rating: 6,
+          rating: 0,
           id: "yo"
         }
       ],
@@ -115,7 +115,7 @@ export default {
 
 
 <style scoped>
-.container {
+.table-container {
   width: 90%;
   margin: 0 auto;
 }

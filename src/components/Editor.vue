@@ -4,8 +4,14 @@
       <div class="title-author-container">
         <el-input placeholder="Enter title" v-model="title" clearable></el-input>
         <el-input placeholder="Enter author" v-model="author" clearable></el-input>
+        <el-rate
+          v-model="rating"
+          @change="handleChange"
+          show-text
+          :texts="['terrible', 'meh', 'ok', 'good', 'great']"
+        ></el-rate>
       </div>
-      <el-rate v-model="rating" @change="handleChange"></el-rate>
+
       <vue-editor v-model="content"></vue-editor>
       <el-button type="primary" @click="handleClick">Save</el-button>
     </form>
@@ -39,17 +45,16 @@ export default {
 </script>
 
 <style scoped>
-.el-rate {
-  font-size: 20px;
-}
 .el-input {
   font-size: 24px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .title-author-container {
   display: flex;
   justify-content: space-between;
   margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  flex-direction: column;
 }
 .add-note-container {
   width: 80%;
@@ -58,5 +63,9 @@ export default {
 .el-button {
   margin-top: 10px;
   float: right;
+}
+
+.quillWrapper {
+  margin-top: 1.5rem;
 }
 </style>
