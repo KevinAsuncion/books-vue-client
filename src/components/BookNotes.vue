@@ -1,9 +1,11 @@
 <template>
   <div class="table-container">
     <el-table
+      v-if="tableData"
       :data="tableData.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || data.author.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
       stripe
+      @row-click="handleClick"
     >
       <el-table-column label="Title" prop="title" sortable></el-table-column>
       <el-table-column label="Author" prop="author" sortable></el-table-column>
@@ -14,7 +16,7 @@
       </el-table-column>
       <el-table-column align="right">
         <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="medium" placeholder="Type to search" />
+          <el-input v-model="search" size="mini" placeholder="Type to search" />
         </template>
         <template slot-scope="scope">
           <el-button-group>
@@ -37,6 +39,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <div v-else>
+      Looks like you have no notes, let's add some
+      <el-button>Add A Book Note</el-button>
+    </div>
   </div>
 </template>
 
@@ -69,12 +75,6 @@ export default {
           author: "Person",
           rating: 5,
           id: "here"
-        },
-        {
-          title: "The Model Thinker",
-          author: "Dude",
-          rating: 0,
-          id: "yo"
         }
       ],
       search: ""
@@ -90,6 +90,9 @@ export default {
     handleView(index, row) {
       this.$router.push("/booknotes/detail");
       console.log(index, row.id);
+    },
+    handleClick(column, row, event) {
+      this.$router.push("/booknotes/detail");
     }
   }
 };

@@ -11,7 +11,7 @@ import { VueEditor } from "vue2-editor";
 export default {
   data() {
     return {
-      content: ""
+      content: "<h1>Hello</h1>"
     };
   },
   components: {
@@ -24,5 +24,10 @@ export default {
 .editor-container {
   margin: 2rem auto;
   width: 80%;
+  text-align: center;
+}
+
+.quillWrapper {
+  display: none;
 }
 </style>
