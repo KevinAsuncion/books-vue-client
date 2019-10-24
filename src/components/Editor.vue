@@ -5,7 +5,7 @@
         <el-input placeholder="Enter title" v-model="title" clearable></el-input>
         <el-input placeholder="Enter author" v-model="author" clearable></el-input>
       </div>
-      <el-rate v-model="rating"></el-rate>
+      <el-rate v-model="rating" @change="handleChange"></el-rate>
       <vue-editor v-model="content"></vue-editor>
       <el-button type="primary" @click="handleClick">Save</el-button>
     </form>
@@ -30,6 +30,9 @@ export default {
   methods: {
     handleClick() {
       console.log(this.content);
+    },
+    handleChange() {
+      console.log(this.rating);
     }
   }
 };

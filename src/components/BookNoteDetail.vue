@@ -1,10 +1,22 @@
 <template>
-  <div>Welcome to the book note detail page</div>
+  <div>
+    <vue-editor v-model="content"></vue-editor>
+  </div>
 </template>
 
 <script>
-export default {};
+import { VueEditor } from "vue2-editor";
+export default {
+  data() {
+    return {
+      content: "<h1>Hello</h1>"
+    };
+  },
+  components: {
+    VueEditor
+  }
+};
 </script>
 
-<style>
+<style scoped>
 </style>

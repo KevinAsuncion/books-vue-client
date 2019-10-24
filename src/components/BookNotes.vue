@@ -59,7 +59,8 @@ export default {
           id: "yo"
         }
       ],
-      search: ""
+      search: "",
+      rating: ""
     };
   },
   methods: {
@@ -72,6 +73,9 @@ export default {
     handleView(index, row) {
       this.$router.push("/booknotes/detail");
       console.log(index, row.id);
+    },
+    handleRateChange() {
+      console.log(this.rating);
     }
   }
 };
