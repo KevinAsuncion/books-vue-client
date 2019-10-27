@@ -19,7 +19,7 @@ const routes = [
     component: BookNotes,
   },
   {
-    path: '/edit',
+    path: '/booknotes/:id/edit',
     name: 'Editor',
     component: Editor,
   },
@@ -29,7 +29,7 @@ const routes = [
     component: Editor,
   },
   {
-    path: '/booknotes/detail',
+    path: '/booknotes/:id/',
     name: 'Book Note Detail',
     component: BookNoteDetail,
   },

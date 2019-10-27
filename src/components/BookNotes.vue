@@ -12,7 +12,7 @@
         <template slot="header" slot-scope="scope">
           <el-input v-model="search" placeholder="Type to search" />
         </template>
-        <el-table-column fixed="left" label="Title" prop="title" sortable></el-table-column>
+        <el-table-column label="Title" prop="title" sortable></el-table-column>
         <el-table-column label="Author" prop="author" sortable></el-table-column>
         <el-table-column v-if="this.windowWidth > 450" label="Rating" prop="rating" sortable>
           <template slot-scope="scope">
