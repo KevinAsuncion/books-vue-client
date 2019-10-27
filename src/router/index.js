@@ -3,10 +3,16 @@ import VueRouter from 'vue-router';
 import BookNotes from '../components/BookNotes';
 import Editor from '../components/Editor';
 import BookNoteDetail from '../components/BookNoteDetail';
+import LandingPage from '../components/LandingPage';
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: 'Landing Page',
+    component: LandingPage
+  },
   {
     path: '/booknotes',
     name: 'Book Notes',

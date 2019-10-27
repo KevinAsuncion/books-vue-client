@@ -6,15 +6,16 @@
         <el-input placeholder="Enter author" v-model="author" clearable></el-input>
         <el-rate v-model="rating" @change="handleChange"></el-rate>
       </div>
-      <vue-editor v-model="content"></vue-editor>
-      <el-button type="primary" @click="handleClick">Save</el-button>
+      <vue-editor placeholder="Enter your notes here" v-model="content"></vue-editor>
+      <el-button @submit.prevent="handleSubmit" type="primary">Save</el-button>
     </form>
   </div>
 </template>
 
 <script>
-import { VueEditor, Quill } from "vue2-editor";
+import { VueEditor } from "vue2-editor";
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -28,7 +29,7 @@ export default {
     VueEditor
   },
   methods: {
-    async handleClick() {
+    async handleSubmit() {
       const res = await axios.post("http://127.0.0.1:5000/booknotes", {
         title: this.title,
         content: this.content,
@@ -44,7 +45,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .el-input {
   font-size: 20px;
   margin-bottom: 1.5rem;
@@ -61,11 +62,11 @@ export default {
   margin: 0 auto;
 }
 .el-button {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 1.5rem;
 }
 
-.quillWrapper {
-  margin-top: 1.5rem;
+#quill-container {
+  height: 300px;
+  margin-bottom: 1.5rem;
 }
 </style>

@@ -1,48 +1,34 @@
 <template>
   <div class="table-container">
     <el-table
+      height="500"
+      v-loading="loading"
       :data="tableData.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()) || data.author.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%"
       stripe
       @row-click="handleClick"
     >
-      <el-table-column label="Title" prop="title" sortable></el-table-column>
-      <el-table-column label="Author" prop="author" sortable></el-table-column>
-      <el-table-column label="Rating" prop="rating" sortable>
-        <template slot-scope="scope">
-          <el-rate disabled v-model="scope.row.rating"></el-rate>
-        </template>
-      </el-table-column>
-      <el-table-column align="right">
+      <el-table-column>
         <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="mini" placeholder="Type to search" />
+          <el-input v-model="search" placeholder="Type to search" />
         </template>
-        <template slot-scope="scope">
-          <el-button-group>
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              @click="handleEdit(scope.$index, scope.row)"
-            ></el-button>
-            <el-button
-              type="primary"
-              icon="el-icon-view"
-              @click="handleView(scope.$index, scope.row)"
-            ></el-button>
-            <el-button
-              type="primary"
-              icon="el-icon-delete"
-              @click="handleDelete(scope.$index, scope.row)"
-            ></el-button>
-          </el-button-group>
-        </template>
+        <el-table-column fixed label="Title" prop="title" sortable></el-table-column>
+        <el-table-column label="Author" prop="author" sortable></el-table-column>
+        <el-table-column label="Rating" prop="rating" sortable>
+          <template slot-scope="scope">
+            <el-rate disabled v-model="scope.row.rating"></el-rate>
+          </template>
+        </el-table-column>
       </el-table-column>
       <template slot="empty" slot-scope="scope">
+        <p>No results. Would you like to add a new book note?</p>
         <router-link to="/booknotes/new">
           <el-button>Add new Booknotes</el-button>
         </router-link>
       </template>
     </el-table>
+  </div>
+</template>
   </div>
 </template>
 
@@ -53,21 +39,20 @@ export default {
   data() {
     return {
       tableData: [],
-      search: ""
+      search: "",
+      loading: true
     };
   },
   methods: {
     handleEdit(index, row) {
       console.log(index, row.id);
     },
-    handleDelete(index, row) {
-      console.log(index, row.id);
-    },
-    handleView(index, row) {
-      this.$router.push("/booknotes/detail");
-      console.log(index, row.id);
-    },
+    // handleView(index, row) {
+    //   this.$router.push("/booknotes/detail");
+    //   console.log(index, row.id);
+    // },
     handleClick(column, row, event) {
+      console.log(row.id);
       this.$router.push("/booknotes/detail");
     },
     async getBookNotes() {
@@ -76,6 +61,7 @@ export default {
         const res = await axios.get(path);
         console.log(res);
         this.tableData = res.data.book_notes;
+        this.loading = false;
       } catch (err) {
         throw new Error(err);
       }
@@ -90,10 +76,16 @@ export default {
 
 <style scoped>
 .table-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 2rem auto;
+}
+tr .el-table__row {
+  cursor: pointer;
 }
 
+body {
+  margin: 0;
+}
 .searchbar {
   width: 75%;
 }
