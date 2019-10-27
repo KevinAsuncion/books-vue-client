@@ -7,7 +7,6 @@
     </div>
     <el-divider></el-divider>
     <div class="editor-container">
-      <vue-editor v-model="content" placeholder="enter your notes here.."></vue-editor>
       <div v-html="content"></div>
     </div>
     <el-button>Edit</el-button>
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 import axios from "axios";
 export default {
   data() {
@@ -26,9 +24,6 @@ export default {
       rating: null,
       content: ""
     };
-  },
-  components: {
-    VueEditor
   },
   async created() {
     const res = await axios.get(
