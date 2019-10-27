@@ -12,9 +12,9 @@
         <template slot="header" slot-scope="scope">
           <el-input v-model="search" placeholder="Type to search" />
         </template>
-        <el-table-column fixed label="Title" prop="title" sortable></el-table-column>
+        <el-table-column fixed="left" label="Title" prop="title" sortable></el-table-column>
         <el-table-column label="Author" prop="author" sortable></el-table-column>
-        <el-table-column label="Rating" prop="rating" sortable>
+        <el-table-column v-if="this.windowWidth > 450" label="Rating" prop="rating" sortable>
           <template slot-scope="scope">
             <el-rate disabled v-model="scope.row.rating"></el-rate>
           </template>
@@ -40,7 +40,8 @@ export default {
     return {
       tableData: [],
       search: "",
-      loading: true
+      loading: true,
+      windowWidth: window.innerWidth
     };
   },
   methods: {
@@ -69,6 +70,11 @@ export default {
   },
   created() {
     this.getBookNotes();
+  },
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
   }
 };
 </script>
@@ -88,5 +94,11 @@ body {
 }
 .searchbar {
   width: 75%;
+}
+
+@media only screen and (max-width: 450px) {
+  #rating-col {
+    visibility: hidden;
+  }
 }
 </style>

@@ -49,8 +49,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 90%;
   margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 a {
