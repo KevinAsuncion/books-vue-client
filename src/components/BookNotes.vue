@@ -27,6 +27,7 @@
         </router-link>
       </template>
     </el-table>
+    <i @click="handleNew" class="el-icon-circle-plus"></i>
   </div>
 </template>
   
@@ -46,10 +47,9 @@ export default {
     handleEdit(index, row) {
       console.log(index, row.id);
     },
-    // handleView(index, row) {
-    //   this.$router.push("/booknotes/detail");
-    //   console.log(index, row.id);
-    // },
+    handleNew() {
+      this.$router.push("/booknotes/new");
+    },
     handleClick(column, row, event) {
       this.$router.push(`/booknotes/${column.id}`);
     },
@@ -91,6 +91,15 @@ body {
 }
 .searchbar {
   width: 75%;
+}
+
+.el-icon-circle-plus {
+  font-size: 3rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 450px) {

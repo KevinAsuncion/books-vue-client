@@ -36,7 +36,12 @@ export default {
         author: this.author,
         rating: this.rating
       });
-      this.$router.push("/booknotes");
+      this.$router.push("/booknotes", () => {
+        this.$message({
+          type: "succcess",
+          message: "Success! Added book note"
+        });
+      });
     },
     handleChange() {
       console.log(this.rating);

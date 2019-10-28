@@ -39,10 +39,14 @@ export default {
       this.deletePopOver = false;
     },
     async handleDeleteConfirm() {
-      axios.delete(`http://127.0.0.1:5000/booknotes/${this.$route.params.id}`);
+      const res = await axios.delete(
+        `http://127.0.0.1:5000/booknotes/${this.$route.params.id}`
+      );
       this.deletePopOver = false;
-      this.$router.push("/booknotes", () => {
-        this.$router.go();
+      this.$router.go(-1);
+      this.$message({
+        type: "success",
+        message: "successfully deleted post"
       });
     },
     handleEdit() {
