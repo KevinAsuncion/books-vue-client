@@ -6,10 +6,12 @@
       <el-submenu index="1">
         <template slot="title">Menu</template>
         <router-link to="/booknotes">
-          <el-menu-item index="1-1">All Books</el-menu-item>
+          <el-menu-item index="1">All Books</el-menu-item>
         </router-link>
-        <el-menu-item index="1-2">Add Book</el-menu-item>
-        <el-menu-item index="1-3">Logout</el-menu-item>
+        <router-link to="/booknotes/new">
+          <el-menu-item index="2">Add Book</el-menu-item>
+        </router-link>
+        <el-menu-item index="3">Logout</el-menu-item>
       </el-submenu>
       <!-- <el-menu-item index="1">
       

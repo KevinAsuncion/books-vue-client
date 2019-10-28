@@ -29,9 +29,7 @@
     </el-table>
   </div>
 </template>
-  </div>
-</template>
-
+  
 <script>
 import axios from "axios";
 export default {
@@ -40,7 +38,7 @@ export default {
     return {
       tableData: [],
       search: "",
-      loading: true,
+      loading: false,
       windowWidth: window.innerWidth
     };
   },
@@ -53,8 +51,7 @@ export default {
     //   console.log(index, row.id);
     // },
     handleClick(column, row, event) {
-      console.log(row.id);
-      this.$router.push("/booknotes/detail");
+      this.$router.push(`/booknotes/${column.id}`);
     },
     async getBookNotes() {
       try {

@@ -7,7 +7,7 @@
         <el-rate v-model="rating" @change="handleChange"></el-rate>
       </div>
       <vue-editor placeholder="Enter your notes here" v-model="content"></vue-editor>
-      <el-button @submit.prevent="handleSubmit" type="primary">Save</el-button>
+      <el-button @click="handleSubmit" type="primary">Save</el-button>
     </form>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
         author: this.author,
         rating: this.rating
       });
-      console.log(res);
+      this.$router.push("/booknotes");
     },
     handleChange() {
       console.log(this.rating);
