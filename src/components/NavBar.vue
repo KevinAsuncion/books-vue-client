@@ -1,9 +1,8 @@
 <template>
   <div class="navbar-container">
-    <i class="el-icon-notebook-1 logo">Minotes</i>
-    <!-- :default-active="activeIndex"  -->
-    <el-menu mode="horizontal" @select="handleSelect">
-      <el-submenu index="1">
+    <i class="el-icon-notebook-1 logo"></i>
+    <el-menu mode="horizontal">
+      <el-submenu v-if="auth" index="1">
         <template slot="title">Menu</template>
         <router-link to="/booknotes">
           <el-menu-item index="1">All Books</el-menu-item>
@@ -13,13 +12,15 @@
         </router-link>
         <el-menu-item index="3">Logout</el-menu-item>
       </el-submenu>
-      <!-- <el-menu-item index="1">
-      
-      </el-menu-item>
-      <el-menu-item index="2">
-        <router-link to="/booknotes/new">Add Notes</router-link>
-      </el-menu-item>
-      <el-menu-item index="3">Logout</el-menu-item>-->
+      <el-submenu v-else index="2">
+        <template slot="title">Menu</template>
+        <router-link to="/login">
+          <el-menu-item index="1">Login</el-menu-item>
+        </router-link>
+        <router-link to="/signup">
+          <el-menu-item index="2">Signup</el-menu-item>
+        </router-link>
+      </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -28,18 +29,11 @@
 export default {
   data() {
     return {
-      activeIndex: "1"
+      auth: false
     };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    }
   }
 };
 </script>
-
-
 
 <style scoped>
 .logo {
