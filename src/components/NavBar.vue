@@ -47,6 +47,7 @@ export default {
   align-items: center;
   margin-left: 1rem;
   margin-right: 1rem;
+  border-bottom: 1px solid black;
 }
 
 a {

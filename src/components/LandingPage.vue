@@ -7,7 +7,7 @@
           <el-button>Login</el-button>
         </router-link>
         <router-link to="/signup">
-          <el-button>Signup</el-button>
+          <el-button type="primary">Signup</el-button>
         </router-link>
       </div>
       <div id="hero-image-container">
@@ -27,9 +27,8 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 500px;
-  border: 1px solid black;
-  padding: 3rem;
+  height: 100vh;
+  padding: 2rem;
 }
 #reading-image {
   height: 100%;
